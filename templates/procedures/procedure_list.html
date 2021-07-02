@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block header %} bg1 {% endblock header %}
+{% block content %}
+<div class="left-ads-display col-lg-9">
+    <div class="row">
+        {% for procedure in procedure_list %}
+        <div class="col-md-4 product-men">
+            <div class="product-shoe-info editContent text-center mt-lg-4">
+                <div class="item-info-product">
+                    <h4 class="">
+                        {{ procedure.purchaseObjectInfo }}
+                        {{ procedure.maxPrice }}
+                        {{ procedure.curator }}
+                    </h4>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

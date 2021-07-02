@@ -1,0 +1,62 @@
+<!--{% extends 'base.html' %}-->
+{% block content %}
+<div id="container" style="width: 75%;">
+    <canvas id="data_by_curators" data-url="{% url 'data_by_curators' %}"></canvas>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+    $(function () {
+      var $lots_chart = $("#data_by_curators");
+
+      $.ajax({
+        url: $lots_chart.data("url"),
+        success: function (data) {
+          var $datasets = data.data;
+
+          var ctx = $lots_chart[0].getContext("2d");
+
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: data.labels,
+              datasets: data.data
+            },
+            options: {
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: 'Date'
+                    }
+                  },
+                  y: {
+                    stacked: true,
+                    title: {
+                      display: true,
+                      text: 'Value'
+                    }
+                  }
+                },
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Стоимость лотов'
+                }
+            }
+          });
+        }
+      });
+
+    });
+
+
+
+
+
+
+</script>
+{% endblock %}

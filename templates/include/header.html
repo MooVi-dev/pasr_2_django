@@ -1,0 +1,23 @@
+<header class="header">
+    <div class="container-fluid px-lg-5">
+        <!-- nav -->
+        <nav class="py-4">
+            <div id="logo">
+                <h1>Тестовое задание
+                </h1>
+            </div>
+
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop">
+            <ul class="menu mt-2">
+<!--                <li class="active"><a href="home.html">Главная</a></li>-->
+                <li>
+                    {% if user.is_authenticated %}
+                    <span> {{ user.username }} </span>
+                    {% else %}
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

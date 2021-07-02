@@ -1,0 +1,35 @@
+<canvas id="Bug-status-bar" class="col-md-6"></canvas>
+<script  THERE GOES CHART CDN LINK></script>
+<script type="text/javascript">
+var ctx = document.getElementById('Bug-status-bar');
+var dataArray = [{{procedures_all_total|safe}}]
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+    labels: ['All', 'Posted', 'Pending', 'Fixed'],
+    datasets: [{
+        label: 'Statistic on bug activity',
+        data: dataArray,
+        backgroundColor: [
+            'rgba(255, 99, 132, 0.4)'
+            'rgba(54, 162, 235, 0.2)',
+        ],
+
+        borderColor: [
+            'rgba(255, 99, 132, 1)'
+            'rgba(54, 162, 235, 1)',
+        ],
+        borderWidth: 1
+    }]
+},
+options: {
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+}
+});
+</script>

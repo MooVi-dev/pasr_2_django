@@ -1,0 +1,50 @@
+
+{% block header %} {% endblock header %}
+{% block content %}
+<div class="left-ads-display col-lg-9">
+    <h4 class="">
+
+
+    </h4>
+    <div class="row">
+        <form method="POST" enctype="multipart/form-data">
+<!--            {% csrf_token %}-->
+            <input type="file" name="myfile1" id="myfile1">
+<!--            <button type="submit">Загрузка</button>-->
+            <a href="#formReview"
+                       onclick="load_data()">Загрузить</a>
+        </form>
+
+        {% for procedure in procedure_list %}
+        <div class="col-md-4 product-men">
+            <div class="product-shoe-info editContent text-center mt-lg-4">
+                <div class="item-info-product">
+                    <h4 class="">
+                        {{ procedure.purchaseObjectInfo }}
+                        {{ procedure.maxPrice }}
+                        {{ procedure.curator }}
+                    </h4>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    <script>
+        function load_data() {
+            var url = '/upload_lots/';
+            var params = document.getElementById("myfile1").files[0].name;
+            console.log(document.getElementById("myfile1"));
+            fetch(`${url}`, {
+                method: 'POST',
+                headers: {
+                    },
+                body: params
+            })
+                .then(response => response.json())
+                .then(json => render(json))
+                .catch(error => console.error(error))
+            ;
+        }
+    </script>
+{% endblock content %}
